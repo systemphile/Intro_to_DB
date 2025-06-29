@@ -18,64 +18,64 @@
 CREATE DATABASE IF NOT EXISTS alx_book_store;
 
 --
--- Table structure for table `authors`
+-- Table structure for table Authors
 --
 
-DROP TABLE IF EXISTS `authors`;
+DROP TABLE IF EXISTS Authors;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `authors` (
-  `author_id` int NOT NULL,
+CREATE TABLE Authors (
+  `author_id ` int NOT NULL,
   `author_name` varchar(215) DEFAULT NULL,
-  PRIMARY KEY (`author_id`)
+  PRIMARY KEY (`author_id `)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `authors`
+-- Dumping data for table Authors
 --
 
-LOCK TABLES `authors` WRITE;
-/*!40000 ALTER TABLE `authors` DISABLE KEYS */;
-/*!40000 ALTER TABLE `authors` ENABLE KEYS */;
+LOCK TABLES Authors WRITE;
+/*!40000 ALTER TABLE Authors DISABLE KEYS */;
+/*!40000 ALTER TABLE Authors ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `books`
+-- Table structure for table Books
 --
 
-DROP TABLE IF EXISTS `books`;
+DROP TABLE IF EXISTS Books;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `books` (
+CREATE TABLE Books (
   `book_id` int NOT NULL,
   `title` varchar(130) DEFAULT NULL,
-  `author_id` int DEFAULT NULL,
+  `author_id ` int DEFAULT NULL,
   `price` double DEFAULT NULL,
   `publication_date` date DEFAULT NULL,
   PRIMARY KEY (`book_id`),
-  KEY `author_id` (`author_id`),
-  CONSTRAINT `books_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `authors` (`author_id`)
+  KEY `author_id ` (`author_id `),
+  CONSTRAINT `books_ibfk_1` FOREIGN KEY (`author_id `) REFERENCES Authors (`author_id `)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `books`
+-- Dumping data for table Books
 --
 
-LOCK TABLES `books` WRITE;
-/*!40000 ALTER TABLE `books` DISABLE KEYS */;
-/*!40000 ALTER TABLE `books` ENABLE KEYS */;
+LOCK TABLES Books WRITE;
+/*!40000 ALTER TABLE Books DISABLE KEYS */;
+/*!40000 ALTER TABLE Books ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `customers`
+-- Table structure for table Customers
 --
 
-DROP TABLE IF EXISTS `customers`;
+DROP TABLE IF EXISTS Customers;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `customers` (
+CREATE TABLE Customers (
   `customer_id` int NOT NULL,
   `customer_name` varchar(215) DEFAULT NULL,
   `email` varchar(215) DEFAULT NULL,
@@ -85,22 +85,22 @@ CREATE TABLE `customers` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `customers`
+-- Dumping data for table Customers
 --
 
-LOCK TABLES `customers` WRITE;
-/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
+LOCK TABLES Customers WRITE;
+/*!40000 ALTER TABLE Customers DISABLE KEYS */;
+/*!40000 ALTER TABLE Customers ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `order_details`
+-- Table structure for table Order_Details
 --
 
-DROP TABLE IF EXISTS `order_details`;
+DROP TABLE IF EXISTS Order_Details;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `order_details` (
+CREATE TABLE Order_Details (
   `orderdetailid` int NOT NULL,
   `order_id` int DEFAULT NULL,
   `book_id` int DEFAULT NULL,
@@ -109,33 +109,33 @@ CREATE TABLE `order_details` (
   KEY `order_id` (`order_id`),
   KEY `book_id` (`book_id`),
   CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
-  CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`)
+  CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES Books (`book_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `order_details`
+-- Dumping data for table Order_Details
 --
 
-LOCK TABLES `order_details` WRITE;
-/*!40000 ALTER TABLE `order_details` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order_details` ENABLE KEYS */;
+LOCK TABLES Order_Details WRITE;
+/*!40000 ALTER TABLE Order_Details DISABLE KEYS */;
+/*!40000 ALTER TABLE Order_Details ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Table structure for table `orders`
 --
 
-DROP TABLE IF EXISTS `orders`;
+DROP TABLE IF EXISTS Orders;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `orders` (
+CREATE TABLE Orders (
   `order_id` int NOT NULL,
   `customer_id` int DEFAULT NULL,
   `order_date` date DEFAULT NULL,
   PRIMARY KEY (`order_id`),
   KEY `customer_id` (`customer_id`),
-  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`)
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES Customers (`customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
